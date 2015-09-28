@@ -1,11 +1,11 @@
 #############################################
-## Program Filename: Video.cpp
+## Program Filename: CS290Hello.py
 #
 # Author: Eric Ferrer
 #
-#Date: 7/6/15
+#Date: 9/27/15
 #
-# Description: Header file for Items
+# Description: Showing off Python Skills!
 #############################################
 
 
