@@ -1,0 +1,31 @@
+body{
+    
+    background-color: #1581DF;
+}
+
+#weather {
+    
+    margin: auto;
+    text-align: center;
+}
+#post {
+    text-align: center;
+}
+#outtertemperature {
+    text-align: center;
+
+}
+
+#temperature{
+    font-size: 25px;
+    color:aquamarine;
+
+}
+
+ul {
+    text-align: center;
+}
+form {
+    width: 100px;
+    margin: 0 auto;
+}
