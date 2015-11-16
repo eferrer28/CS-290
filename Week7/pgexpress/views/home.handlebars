@@ -1,9 +1,26 @@
-<h1>You are receiving a </h1>
+<h1>You are receiving a  {{requestType}} request:</h1>
+
+{{#if getPost}}
+
+
+
+<ul>
+  {{#each postitems}}
+    <li>{{this.key}}: {{this.value}}
+  {{/each}}
+</ul>
+
+
+
+{{else}}
+
 
 <h4>Data from that request is as follows </h4>
 
 <ul>
-  {{#each item}}
+  {{#each items}}
     <li>{{this.key}}: {{this.value}}
   {{/each}}
 </ul>
+
+{{/if}}

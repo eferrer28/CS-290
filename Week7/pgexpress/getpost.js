@@ -1,38 +1,78 @@
 var express = require('express');
 
 var app = express();
-var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+var handlebars = require('express-handlebars').create({
+    defaultLayout: 'main'
+});
 var bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
-app.get('/',function(req,res){
-  var dataArray = [];
-  for ( var data in req.query){
-      dataArray.push({'key':data, 'value':req.query[data]})
-  }
- var context = {};
+app.get('/', function (req, res) {
+
+    var dataArray = [];
+    for (var data in req.query) {
+        dataArray.push({
+            'key': data,
+            'value': req.query[data]
+        })
+    }
+    var context = {requestType: "GET"};
     context.items = dataArray;
-  res.render('home', context);
+    context.getReq = true;
+    res.render('home', context);
 });
 
-app.use(function(req,res){
-  res.status(404);
-  res.render('404');
+
+app.post('/', function (req, res) {
+
+    var dataArray = [];
+    for (var data in req.query) {
+        dataArray.push({
+            'key': data,
+            'value': req.query[data]
+        })
+    }
+    var context = {requestType: "POST"};
+    
+    context.items = dataArray;
+    
+
+
+    var postdataArray = [];
+    for (var data in req.body) {
+        postdataArray.push({
+            'key': data,
+            'value': req.body[data]
+        })
+    }
+    
+    context.postitems = postdataArray;
+    context.getPost = true;
+    context.getReq = false;
+    res.render('home', context);
 });
 
-app.use(function(err, req, res, next){
-  console.error(err.stack);
-  res.type('plain/text');
-  res.status(500);
-  res.render('500');
+
+app.use(function (req, res) {
+    res.status(404);
+    res.render('404');
 });
 
-app.listen(app.get('port'), function(){
-  console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+app.use(function (err, req, res, next) {
+    console.error(err.stack);
+    res.type('plain/text');
+    res.status(500);
+    res.render('500');
+});
+
+app.listen(app.get('port'), function () {
+    console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
