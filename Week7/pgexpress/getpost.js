@@ -12,7 +12,13 @@ app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
 app.get('/',function(req,res){
-  res.render('home')
+  var dataArray = [];
+  for ( var data in req.query){
+      dataArray.push({'key':data, 'value':req.query[data]})
+  }
+ var context = {};
+    context.items = dataArray;
+  res.render('home', context);
 });
 
 app.use(function(req,res){
