@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 3000);
+app.set('port', 3001);
 
 app.get('/', function (req, res) {
 
@@ -24,7 +24,9 @@ app.get('/', function (req, res) {
             'value': req.query[data]
         })
     }
-    var context = {requestType: "GET"};
+    var context = {
+        requestType: "GET"
+    };
     context.items = dataArray;
     context.getReq = true;
     res.render('home', context);
@@ -40,10 +42,12 @@ app.post('/', function (req, res) {
             'value': req.query[data]
         })
     }
-    var context = {requestType: "POST"};
-    
+    var context = {
+        requestType: "POST"
+    };
+
     context.items = dataArray;
-    
+
 
 
     var postdataArray = [];
@@ -53,7 +57,7 @@ app.post('/', function (req, res) {
             'value': req.body[data]
         })
     }
-    
+
     context.postitems = postdataArray;
     context.getPost = true;
     context.getReq = false;
