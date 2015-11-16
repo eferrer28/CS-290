@@ -1,1 +1,9 @@
-<h1>Yeah booooy</h1>
+<h1>You are receiving a </h1>
+
+<h4>Data from that request is as follows </h4>
+
+<ul>
+  {{#each dataList}}
+    <li>{{this.name}}: {{this.value}}
+  {{/each}}
+</ul>
