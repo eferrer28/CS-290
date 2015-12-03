@@ -1,0 +1,47 @@
+<h3>UNIREST</h3>
+
+<div class="unirest">
+
+<p>To use the TrailAPI, mashape has us using something called Unirest. Unirest is a library to simplify making HTTP REST requests. The great thing about Unirest is that it is open source and available in the following languages.</p>
+<ul>
+    <li>Java</li>
+    <li>PHP</li>
+    <li>Python</li>
+    <li>Ruby</li>
+    <li>Objective-C</li>
+    <li>Windows 8</li>
+    <li>Node </li>
+    <li>.Net</li>
+</ul>
+
+<p> For this tutorial we are going to be using Node. So we need install unirest via NPM. </p>
+
+
+
+<div class="highlight highlight-bash">
+<pre>$ npm install unirest</pre> </div>
+    
+<p>Once you have it installed go ahead and add in the following line of code so you are able to simplify requests. </p>
+
+<div class="highlight highlight-bash">
+    <pre>var unirest = require('unirest')</pre></div>
+
+
+
+<br>
+
+<p> If we were to go back to the TrailAPI main page under the word "ENDPOINTS" you should notice that we have a list of parameters that we can enter. As you enter these parameters the REQUEST EXAMPLE fills up with whatever you have entered. VERY CONVENIENT! This will give us a way  to test the API without actually having to code anything.  I am going to go ahead and fill out the city, state, and radius parameters. After filling this out, I am going to go ahead and hit the "test endpoint" button at the very bottom and you should get back a response header and a JSON response that looks something to this.</p>
+    
+<img src="img/snip.png" alt="console" style="width:800px;height:500x;">
+    
+    <p>I also want to see what were to happen if I actually plugged this into my application, so I'll just go ahead and do that as well. I am going to go ahead and copy and paste the REQUEST EXAMPLE into my program and see what the results I get in the console. Awesome! We just got a whole bunch of data returned. But we dont want this data in the console because it won't do us much good here. Since this is JSON data it shouldn't be too hard parse.</p>
+
+
+<img src="img/console.png" alt="console" style="width:800px;height:500x;">
+
+
+
+
+</div>
+
+<a class="btn btn-default" href="/data" role="button">Next Page</a>

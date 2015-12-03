@@ -1,0 +1,29 @@
+<h3>Getting the Data</h3>
+
+<div class="data">
+
+
+<p>Hopefully by now you have had the chance to plug the REQUEST EXAMPLE from the TrailAPi page into your code and gotten a response to your console. If you haven't had the chance to do that please do that now. </p>
+
+<p>Since we are using Node, now is a good time as any to get all of our packages inline. Go ahead and npm install handlebars. Handlebars will is going to let us display al of our data more neatly and there is potentially a lot of data to be returned if you choose to do so. For the sake of this tutorial we are only going to return the name, city, state, and description of the place of interest. </p>
+    <p>Now in our trailapi home page I went ahead and typed in the parameters I wanted and am going to ahead and copy the and paste the code on the right into my app.js file. For the sake of simplicity we would just go ahead and not allow a user to make a query to the API via a form amd just write the parameters that we want directly into the code itself just to show how we can get this API up and running quickly.</p>
+
+    <img class="imgContainer" src="img/details.png" alt="console" style="width:400px;height:400x;">
+    
+<script src="https://gist.github.com/eferrer28/bed2c0bdf010ed31ef54.js"></script>
+    
+
+
+<p> Lines 2-5 our lines that we have copied directly from the REQUEST EXAMPLE. We took away the console.log line as it doesn't do us any good in returning our JSON data to the console. So I went ahead and placed that with a line that renders a page I have named 'example', and I also passed along with it an object. You can see that gave it two properties <strong>"title"</strong> and <strong>"result"</strong>. We can ignore the first as that really doesn't have anything to do with our JSON data but the second object property "result" carries all of our JSON data. One of the great features about using unirest is that it parses responses for us making our lives somewhat easier. From here we can access our JSON data with <strong>'result.body'</strong> as was shown on the console earlier but we need to go one step further and add in <strong>'result.body.places'</strong> so we can get to our data.</p>
+
+<p> From here now we just have to worry about displaying our data so it actually makes some sense. That is why I had you install handlebars a little bit earlier to make the process easier for you. The following is the handlebars template I have set up that will eventually display our JSON data. </p>
+
+<script src="https://gist.github.com/eferrer28/2272ab691b12ae770c36.js"></script>
+    
+<p>So what is going on here you ask? Quite a bit but not too much code. Just how I like it! Handlebars has an 'each' block helper that uses the keyword <strong>'this'</strong> to reference the element that is being iterated over. So we have our object <strong>'data'</strong> being iterated over and the <strong>'this'</strong> is referencing data's name, city, state, description, latitute, and longitude until the interation is complete. Depending on the city and what you search for there can be quite a bit of results to be returned, so just a bit of a fair warning! There is a parameter to limit the number of results as well. With handlebars it also important to close off the each and if tags or page will not render properly. That finishes the tutorial for the TrailAPI! Go ahead to the last past and see exactly information has been returned from this walkthrough.
+    </p>
+    
+    </div>
+
+
+<a class="btn btn-default" href="/example" role="button">Example Page</a>

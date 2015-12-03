@@ -1,0 +1,27 @@
+
+
+
+{{title}}
+
+
+<div class="example">
+    
+{{#if data}}
+
+{{#each data}}
+<p>
+<h2>Name of Park</h2>
+{{this.name}}
+<h4>Location</h4>
+{{this.city}}, {{this.state}}
+<h4>Description</h4>
+{{this.description}}
+<h4>Latitude and Longitude</h4>
+{{this.lat}}, {{this.lon}}
+</p>
+{{/each}}
+
+{{/if}}
+
+
+</div>
