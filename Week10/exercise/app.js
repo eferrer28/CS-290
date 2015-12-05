@@ -68,6 +68,8 @@ app.post('/',function(req,res){
     context.results = "Inserted id " + result.insertId;        
     res.render('home',context);
 });
+        }
+        });
 
 
 
