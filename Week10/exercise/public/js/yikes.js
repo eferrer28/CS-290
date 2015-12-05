@@ -1,4 +1,4 @@
-//document.addEventListener("DOMContentLoaded", magicHappens);
+document.addEventListener("DOMContentLoaded", magicHappens);
 
 function magicHappens(){
     document.getElementById('exercise').addEventListener('click',
