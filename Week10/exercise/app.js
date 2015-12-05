@@ -35,7 +35,7 @@ mysql.pool.query('SELECT * FROM workouts', function(err, rows,   fields){
 
 app.get('/reset-table',function(req,res,next){
   var context = {};
-  mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){ 
+  mysql.pool.query("DROP TABLE IF EXISTS workouts+", function(err){ 
     var createString = "CREATE TABLE workouts("+
     "id INT PRIMARY KEY AUTO_INCREMENT,"+
     "name VARCHAR(255) NOT NULL,"+
@@ -59,7 +59,13 @@ app.post('/',function(req,res){
         {
             console.log("HOO");
             console.log(req.body);
-        }
+            mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `data`, `lbs`) VALUES (?, ?, ?, ?, ?)",
+   [req,body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs], function(err, result){
+        if(err){
+           next(err);
+            return;
+           }
+    context.results = "Inserted id " + result.insertId;        
     res.render('home',context);
 });
 
