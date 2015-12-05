@@ -1,52 +1,70 @@
 var express = require('express');
+var mysql = require('./dbcon.js');
+
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
-//var credentials = require('./credentials.js');
-var unirest = require('unirest');
+
 var request = require('request');
 var bodyParser = require('body-parser');
 
 app.use(express.static('public'));
-
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.engine('handlebars', handlebars.engine);
+
 app.set('view engine', 'handlebars');
-app.set('port', 3001);
-app.use(express.static('public'));
+app.set('port', 3000);
+
 
 app.get('/', function(req, res){   
     res.render('home');
 });
 
-
-app.get('/unirest', function(req, res){  
-	res.render('unirest');
-});
-
-app.get('/data', function(req, res){  
-	res.render('data');
-});
-
-
-
-app.get('/example', function(req, res){
-    
-    
-unirest.get("https://trailapi-trailapi.p.mashape.com/?q[activities_activity_type_name_eq]=hiking&q[city_cont]=Chino&q[state_cont]=California&radius=25")
-.header("X-Mashape-Key", "KMFbmMJvR5mshlzIpvvR6AEKR5TGp1ISCRJjsnd550UPefSzse")
-.header("Accept", 'application/json')
-.end(function (result) {
-         
-  console.log(result.status, result.headers, result.body);
-	res.render('example', {
-        title: "Fruits of Your Labor",
-        data: result.body.places,
+app.get('/',function(req,res,next){
+    var context = {};
+mysql.pool.query('SELECT * FROM workouts', function(err, rows,   fields){
+    if(err){
+        next(err);
+        return;
+            }
+    context.results = (rows[0].name);
+    res.render('home', context);
     });
 });
+
+app.get('/reset-table',function(req,res,next){
+  var context = {};
+  mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){ 
+    var createString = "CREATE TABLE workouts("+
+    "id INT PRIMARY KEY AUTO_INCREMENT,"+
+    "name VARCHAR(255) NOT NULL,"+
+    "reps INT,"+
+    "weight INT,"+
+    "date DATE,"+
+    "lbs BOOLEAN)";
+    mysql.pool.query(createString, function(err){
+      context.results = "Table reset";
+      res.render('home',context);
+    })
+  });
 });
-    
+
+ 
+
+
+app.post('/',function(req,res){
+    var context = {};
+    if(req.body['Exercise'])
+        {
+            console.log("HOO");
+            console.log(req.body);
+        }
+    res.render('home',context);
+});
+
+
+
     
 app.use(function(req,res){
   res.status(404);
