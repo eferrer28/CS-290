@@ -27,30 +27,7 @@ function magicHappens(){
                 var response = JSON.parse(req.responseText);
                 
                 alert(req.response); //debug
-                var mainTable = document.getElementById('mainTable');
-				var newRow = document.createElement('tr');
-				newRow.setAttribute('id', 'row' + response.id);
-				mainTable.appendChild(newRow);
-
-				for (var i = 0; i < 6; i++){
-					var newCell = document.createElement('td');
-					newRow.appendChild(newCell);
-				}
-
-				newRow.children[0].textContent = response.name;
-				newRow.children[1].textContent = response.reps;
-				newRow.children[2].textContent = response.weight;
-				newRow.children[3].textContent = response.date;
-				newRow.children[4].textContent = response.lbs;
-
-				var editDelete = document.createElement('form');
-				newRow.children[5].appendChild(editDelete);
-				editDelete.setAttribute('method', 'post');
-
-				for (var i = 0; i < 3; i++){
-					var newInput = document.createElement('input');
-					editDelete.appendChild(newInput);
-				}
+     
                 
                 
                 
