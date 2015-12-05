@@ -60,3 +60,6 @@ function magicHappens(){
     
     });
 }
+
+
+document.addEventListener("DOMContentLoaded", msgicHappens);
