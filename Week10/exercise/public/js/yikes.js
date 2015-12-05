@@ -62,4 +62,4 @@ function magicHappens(){
 }
 
 
-document.addEventListener("DOMContentLoaded", msgicHappens);
+document.addEventListener("DOMContentLoaded", magicHappens);

@@ -62,7 +62,7 @@ app.post('/', function (req, res) {
     if (req.body['Exercise']) {
         console.log("HOO");
         console.log(req.body);
-        mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `data`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req, body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs], function (err, result) {
+        mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `data`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs], function (err, result) {
             if (err) {
                 next(err);
                 return;
