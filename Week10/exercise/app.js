@@ -20,23 +20,6 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
-
-
-
-app.get('/', function (req, res, next) {
-    var context = {};
-    mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
-        if (err) {
-            next(err);
-            return;
-        }
-        context.results = JSON.stringify(rows);
-        res.render('home', context);
-    });
-});
-
-
-
 app.get('/reset-table', function (req, res, next) {
     var context = {};
     mysql.pool.query("DROP TABLE IF EXISTS workouts+", function (err) {
@@ -53,6 +36,22 @@ app.get('/reset-table', function (req, res, next) {
         })
     });
 });
+
+
+
+app.get('/', function (req, res, next) {
+    var context = {};
+    mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
+        if (err) {
+            next(err);
+            return;
+        }
+        context.results = JSON.stringify(rows);
+        res.render('home', context);
+    });
+});
+
+
 
 
 
