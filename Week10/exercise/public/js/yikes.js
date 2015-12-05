@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", magicHappens);
+document.addEventListener('DOMContentLoaded', magicHappens);
 
 function magicHappens(){
     console.log("why u know oork");
