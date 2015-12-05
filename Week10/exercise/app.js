@@ -28,7 +28,7 @@ mysql.pool.query('SELECT * FROM workouts', function(err, rows,   fields){
         next(err);
         return;
             }
-    context.results = (rows[0].name);
+    context.results = JSON.stringify(rows);
     res.render('home', context);
     });
 });
@@ -53,7 +53,7 @@ app.get('/reset-table',function(req,res,next){
  
 
 
-app.post('/',function(req,res){
+app.post('/insert',function(req,res){
     var context = {};
     if(req.body['Exercise'])
         {
