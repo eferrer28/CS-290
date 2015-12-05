@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", magicHappens);
+
 function magicHappens(){
     document.getElementById('exercise').addEventListener('click',
         function (event){
@@ -10,6 +12,7 @@ function magicHappens(){
             lbs: null
             
         };
+        console.log("for me to poop on");
         payload.name = document.getElementById('name').value;
         payload.reps = document.getElementById('reps').value;
         payload.weight = document.getElementById('weight').value;
@@ -62,4 +65,3 @@ function magicHappens(){
 }
 
 
-document.addEventListener("DOMContentLoaded", magicHappens);
