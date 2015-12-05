@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", magicHappens);
 
 function magicHappens(){
+    console.log("why u know oork");
     document.getElementById('exercise').addEventListener('click',
         function (event){
         var req = new XMLHttpRequest();
@@ -25,7 +26,7 @@ function magicHappens(){
             if (req.status >= 200 && req.status < 400) {
                 var response = JSON.parse(req.responseText);
                 
-                //alert(req.response); //debug
+                alert(req.response); //debug
                 var mainTable = document.getElementById('mainTable');
 				var newRow = document.createElement('tr');
 				newRow.setAttribute('id', 'row' + response.id);
