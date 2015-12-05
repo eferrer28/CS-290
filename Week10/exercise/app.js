@@ -30,6 +30,7 @@ app.get('/reset-table', function (req, res, next) {
             "weight INT," +
             "date DATE," +
             "lbs BOOLEAN)";
+        console.log("fuck me in the ear");
         mysql.pool.query(createString, function (err) {
             context.results = "Table reset";
             res.render('home', context);
@@ -47,6 +48,7 @@ app.get('/', function (req, res, next) {
             return;
         }
         context.results = JSON.stringify(rows);
+        console.log("fuck me in the ear again");
         res.render('home', context);
     });
 });
