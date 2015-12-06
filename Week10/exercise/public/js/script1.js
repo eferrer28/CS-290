@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded',magicHappens bindButtons);
+document.addEventListener('DOMContentLoaded', magicHappens);
 
 
 
