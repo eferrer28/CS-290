@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', magicHappens);
 
+console.log("don't be scared");
+
 function magicHappens(){
     console.log("why u know oork");
     document.getElementById('exercise').addEventListener('click',
