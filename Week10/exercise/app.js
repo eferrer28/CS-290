@@ -170,7 +170,7 @@ app.post('/',function(req,res,next){
 		}
 	}
 
-	if(req.body['del'])pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function(err, result){
+	if(req.body['del'])mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function(err, result){
 			if(err){
 				next(err);
 				return;
