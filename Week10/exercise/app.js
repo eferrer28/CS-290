@@ -38,9 +38,6 @@ app.get('/', function (req, res, next) {
 
 
 
-
-
-
 app.post('/', function (req, res, next) {
     var context = {};
     //if (req.body['Exercise']) {
