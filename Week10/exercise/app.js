@@ -6,15 +6,14 @@ var handlebars = require('express-handlebars').create({
 });
 var request = require('request');
 var bodyParser = require('body-parser');
-
-app.use(express.static('public'));
-
-//app.use(express.static(__dirname + '/View')); //store html files
-//app.use(express.static(__dirname + '/Script));
-
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+//app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+
+
 
 app.engine('handlebars', handlebars.engine);
 
