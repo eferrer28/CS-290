@@ -33,9 +33,9 @@ app.get('/reset-table', function (req, res, next) {
             "lbs BOOLEAN)";
         console.log("fuck me in the ear");
         mysql.pool.query(createString, function (err) {
-           // context.results = "Table reset";
-            //res.render('home', context);
-             res.sendFile('public/htmlform.html', {root: __dirname });
+            context.results = "Table reset";
+            res.render('home', context);
+            // res.sendFile('public/htmlform.html', {root: __dirname });
         })
     });
 });
