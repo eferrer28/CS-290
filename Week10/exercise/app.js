@@ -136,10 +136,12 @@ app.post('/',function(req,res,next){
 	var context = {};
 
 	if(req.body['Exercise']){
-		if (req.body.name && req.body.reps && req.body.weight && req.body.date && req.body.units){
+        console.log(req.body);
+        console.log("1");
+		if (req.body.name && req.body.reps && req.body.weight && req.body.date && req.body.lbs){
 			pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
 					  [req.body.name, req.body.reps, req.body.weight,
-				       req.body.date, req.body.units], function(err, result){
+				       req.body.date, req.body.lbs], function(err, result){
 				if(err){
 					next(err);
 					return;
