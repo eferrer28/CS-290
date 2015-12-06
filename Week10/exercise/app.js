@@ -31,7 +31,7 @@ app.get('/reset-table', function (req, res, next) {
             "reps INT," +
             "weight INT," +
             "date DATE," +
-            "lbs BOOLEAN)";ld
+            "lbs BOOLEAN)";
         console.log("fuck me in the ear");
         mysql.pool.query(createString, function (err) {
             context.results = "Table reset";
