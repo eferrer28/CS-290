@@ -155,13 +155,13 @@ app.post('/',function(req,res,next){
 					}
 
 					var data = rows[0];
-
+                    /*
 					if (data.lbs === 0){
 						data.lbs = "kgs";
 					} else {
 						data.lbs = "lbs";
 					}
-
+                    *
 					res.type('text/plain');
 					data = JSON.stringify(data);
 					res.send(data);
