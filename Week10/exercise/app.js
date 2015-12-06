@@ -10,7 +10,10 @@ var handlebars = require('express-handlebars').create({
 var request = require('request');
 var bodyParser = require('body-parser');
 
-app.use(express.static('public'));
+// app.use(express.static('public'));
+
+app.use(express.static(__dirname + '/public'));
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));
