@@ -23,7 +23,7 @@ app.set('port', 3000);
 
 app.get('/reset-table', function (req, res, next) {
     console.log("resetting shit");
-    //var context = {};
+    var context = {};
     mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
         var createString = "CREATE TABLE workouts(" +
             "id INT PRIMARY KEY AUTO_INCREMENT," +
