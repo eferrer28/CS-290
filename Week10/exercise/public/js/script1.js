@@ -75,4 +75,4 @@ function magicHappens(){
 }
 
 
-document.addEventListener('DOMContentLoaded', magicHappens);
+//document.addEventListener('DOMContentLoaded', magicHappens);
