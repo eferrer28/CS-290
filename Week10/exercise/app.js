@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({
 
 app.use('/static', express.static('public'));
 //app.use(express.static('public'));
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static(__dirname + '/public'));
 
 
 
@@ -31,7 +31,7 @@ app.get('/reset-table', function (req, res, next) {
             "reps INT," +
             "weight INT," +
             "date DATE," +
-            "lbs BOOLEAN)";
+            "lbs BOOLEAN)";ld
         console.log("fuck me in the ear");
         mysql.pool.query(createString, function (err) {
             context.results = "Table reset";
