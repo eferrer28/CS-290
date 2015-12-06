@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 
 // app.use(express.static('public'));
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -40,7 +40,7 @@ app.get('/', function (req, res, next) {
 });
 
 
-
+/*
 app.post('/', function (req, res, next) {
     var context = {};
     //if (req.body['Exercise']) {
@@ -71,6 +71,37 @@ app.post('/', function (req, res, next) {
         });
    // }
 });
+*/
+
+
+app.get('/insert', function (req, res, next) {
+    var context = {};
+    mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
+        if (err) {
+            next(err);
+            return;
+        }
+        context.results = "Inserted id " + result.insertId;
+
+        var = newId = result.newid;
+
+        mysql.pool.query('SELECT * FROM workouts WHERE id=?', [newId], function (err, rows, fields) {
+            if (err) {
+                next(err);
+                return;
+            }
+            context = rows;
+            res.send(JSON.stringify(rows));
+        });
+
+
+    });
+});
+
+
+
+
+
 
 app.get('/reset-table', function (req, res, next) {
     var context = {};
@@ -88,6 +119,19 @@ app.get('/reset-table', function (req, res, next) {
             res.render('home', context);
         })
     });
+});
+
+
+app.get('/delete',function(req,res,next){
+  var context = {};
+  mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.query.id], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    context.results = "Deleted " + result.changedRows + " rows.";
+    res.render('home',context);
+  });
 });
 
 
