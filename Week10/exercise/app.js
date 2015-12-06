@@ -181,9 +181,8 @@ app.post('/',function(req,res,next){
 			res.type('text/plain');
 			res.send(data);
 		});
-	}
+	});
 
-});
 
 
 
