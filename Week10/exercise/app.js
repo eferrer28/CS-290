@@ -1,12 +1,9 @@
 var express = require('express');
 var mysql = require('./dbcon.js');
-
-
 var app = express();
 var handlebars = require('express-handlebars').create({
     defaultLayout: 'main'
 });
-
 var request = require('request');
 var bodyParser = require('body-parser');
 
@@ -40,7 +37,7 @@ app.get('/reset-table', function (req, res, next) {
     });
 });
 
-
+/*
 
 app.get('/', function (req, res, next) {
     var context = {};
@@ -56,7 +53,7 @@ app.get('/', function (req, res, next) {
 });
 
 
-/*
+
 app.post('/', function (req, res, next) {
     var context = {};
     //if (req.body['Exercise']) {
@@ -87,7 +84,7 @@ app.post('/', function (req, res, next) {
         });
    // }
 });
-*/
+
 
 
 app.get('/insert', function (req, res, next) {
@@ -133,7 +130,62 @@ app.get('/delete',function(req,res,next){
     res.render('home',context);
   });
 });
+*/
 
+app.get('/exercise', function (req, res) {
+    var context = {};
+    res.render('exercise', context);
+});
+
+
+app.get('/insert', function (req, res, next) {
+    var context = {};
+    mysql.pool.query("INSERT INTO workouts (`name`,`reps`,`weight`,`date`,`lbs`) VALUES (?,?,?,?,?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
+        if (err) {
+            next(err);
+            return;
+        }
+        mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
+            if (err) {
+                next(err);
+                return;
+            }
+            var results = JSON.stringify(rows);
+            res.send(results);
+        });
+    });
+});
+
+app.get('/delete', function (req, res, next) {
+    var context = {};
+    mysql.pool.query("DELETE FROM workouts WHERE id = ?", [req.query.id], function (err, result) {
+        if (err) {
+            next(err);
+            return;
+        }
+        mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
+            if (err) {
+                next(err);
+                return;
+            }
+            var results = JSON.stringify(rows);
+            res.send(results);
+        });
+    });
+});
+
+app.get('/update', function (req, res, next) {
+    var context = {};
+    mysql.pool.query("SELECT * FROM workouts WHERE id=?",[req.query.id], function (err, rows) {
+            if (err) {
+                next(err);
+                return;
+            }
+            var row = JSON.stringify(rows);
+            context.name = row[0].name;
+            context.row = JSON.stringify(rows);
+            res.render('update', context);
+        });
 
 app.use(function (req, res) {
     res.status(404);
