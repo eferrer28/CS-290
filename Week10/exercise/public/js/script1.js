@@ -1,4 +1,6 @@
-
+fucntion poop(){
+    console.log("53");
+}
 
 
 
@@ -77,5 +79,5 @@ function magicHappens(){
 
 //windows.addEventListener('load', function()){
                          
-
+poop();
 document.addEventListener('DOMContentLoaded', magicHappens);
