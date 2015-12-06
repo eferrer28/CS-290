@@ -1,6 +1,6 @@
 omg();
 console.log('el o el');
-//document.addEventListener('DOMContentLoaded', magicHappens);
+document.addEventListener('DOMContentLoaded', magicHappens);
 
 
 function omg(){
