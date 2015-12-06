@@ -10,14 +10,10 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-//app.use('/static', express.static('public'));
-//app.use(express.static('public'));
+
 app.use(express.static(__dirname + '/public'));
 
-
-
 app.engine('handlebars', handlebars.engine);
-
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
@@ -88,7 +84,7 @@ app.post('/', function (req, res, next) {
         });
    // }
 });
-*/
+
 
 
 app.get('/', function (req, res, next) {
@@ -134,6 +130,61 @@ app.get('/delete',function(req,res,next){
     res.render('home',context);
   });
 });
+*/
+
+app.post('/',function(req,res,next){
+	var context = {};
+
+	if(req.body['workout']){
+		if (req.body.name && req.body.reps && req.body.weight && req.body.date && req.body.units){
+			pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
+					  [req.body.name, req.body.reps, req.body.weight,
+				       req.body.date, req.body.units], function(err, result){
+				if(err){
+					next(err);
+					return;
+				}
+				var addedId = result.insertId;
+
+				pool.query('SELECT * FROM workouts WHERE id=?', [addedId], function(err, rows, fields){
+					if(err){
+						next(err);
+						return;
+					}
+
+					var data = rows[0];
+
+					if (data.lbs === 0){
+						data.lbs = "kgs";
+					} else {
+						data.lbs = "lbs";
+					}
+
+					res.type('text/plain');
+					data = JSON.stringify(data);
+					res.send(data);
+				});
+			});
+		}
+	}
+
+	if(req.body['del']){
+		pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function(err, result){
+			if(err){
+				next(err);
+				return;
+			}
+			var data = {};
+			data.id = req.body.id;
+			data = JSON.stringify(data);
+			res.type('text/plain');
+			res.send(data);
+		});
+	}
+
+};
+
+
 
 
 app.use(function (req, res) {

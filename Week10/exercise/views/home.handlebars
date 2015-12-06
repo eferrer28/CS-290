@@ -1,17 +1,16 @@
-
-
 <h1>Time to Get in Shape, YOU FATTY</h1>
 
 
-<form action="/"  id="workoform">
-  <label for="Your Data">Your Exercise Data:</label>
-  <input id="name" type="text" name="name" placeholder="exercise name">
+
+<form action="/" method="post" id="workoform">
+    <label for="Your Data">Your Exercise Data:</label>
+    <input id="name" type="text" name="name" placeholder="exercise name">
     <input id="reps" type="text" name="reps" placeholder="reps">
     <input id="weight" type="text" name="weight" placeholder="weight">
     <input id="date" type="text" name="date" placeholder="date">
     <input id="lbs" type="radio" name="lbs" placeholder="lbs">
     <input id="kg" type="radio" name="kg" placeholder="kg">
-  <input type="submit" name="Exercise" id="exercise">
+    <input type="submit" name="Exercise" id="exercise" value="add">
 </form>
 
 
@@ -20,20 +19,35 @@
 
 <table>
     <thead>
-    <trow>
-        <th>Exercise Name</th>
-        <th>Reps</th>
-        <th>Weight</th>
-        <th>Date</th>
-        <th>lbs/kg</th>
-    
-    
-    </trow>
+        <trow>
+            <th>Exercise Name</th>
+            <th>Reps</th>
+            <th>Weight</th>
+            <th>Date</th>
+            <th>lbs/kg</th>
+
+
+        </trow>
     </thead>
-    		<tbody id="tbody">
-		</tbody>
+    <tbody id="tbody">
+        {{#if results}} {{#each results}}
+        <tr id="row{{this.id}}">
+            <td>{{this.name}}</td>
+            <td>{{this.reps}}</td>
+            <td>{{this.weight}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.lbs}}</td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="id" value="{{this.id}}">
+                    <input type="submit" name="edit" value="Edit">
+                    <input class="deleteWorkout" type="submit" name="delete" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {{/each}} {{/if}}
+    </tbody>
+</table>
+</tbody>
 
 </table>
-
-
- 
