@@ -9,8 +9,8 @@ var bodyParser = require('body-parser');
 
 app.use(express.static('public'));
 
-app.use(express.static(__dirname + '/View')); //store html files
-app.use(express.static(__dirname + '/Script));
+//app.use(express.static(__dirname + '/View')); //store html files
+//app.use(express.static(__dirname + '/Script));
 
 app.use(bodyParser.urlencoded({
     extended: false
