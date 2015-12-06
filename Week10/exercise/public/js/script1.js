@@ -1,10 +1,11 @@
-document.addEventListener('DOMContentLoaded', magicHappens);
+
 
 
 
 function magicHappens(){
     console.log("don't be scared");
-    document.getElementById('exercise').addEventListener('click', function(event){
+    document.getElementsByName
+    ('Exercise').addEventListener('click', function(event){
 		var req = new XMLHttpRequest();
 		var payload = {};
 
@@ -74,5 +75,7 @@ function magicHappens(){
     });
 }
 
+//windows.addEventListener('load', function()){
+                         
 
-//document.addEventListener('DOMContentLoaded', magicHappens);
+document.addEventListener('DOMContentLoaded', magicHappens);
