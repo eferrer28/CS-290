@@ -36,7 +36,7 @@ app.get('/reset-table', function (req, res, next) {
         mysql.pool.query(createString, function (err) {
            // context.results = "Table reset";
             //res.render('home', context);
-             res.sendFile('htmlform.html');
+             res.sendFile('public/htmlform.html');
         })
     });
 });
