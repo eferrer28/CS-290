@@ -1,18 +1,13 @@
 document.addEventListener('DOMContentLoaded', magicHappens);
 
+console.log("don't be scared");
+
 function magicHappens(){
     console.log("why u know oork");
     document.getElementById('exercise').addEventListener('click',
         function (event){
         var req = new XMLHttpRequest();
-        var payload = {
-            name: null,
-            reps: null,
-            weight: null,
-            date: null,
-            lbs: null
-            
-        };
+
         console.log("for me to poop on");
         payload.name = document.getElementById('name').value;
         payload.reps = document.getElementById('reps').value;

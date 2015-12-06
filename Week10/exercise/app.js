@@ -53,7 +53,7 @@ app.post('/', function (req, res, next) {
             }
             var newId = result.insertid;
 
-            mysql.pool.query('SELECT * FROM workout WHERE id=?', [newId], function (err, rows, fields) {
+            mysql.pool.query('SELECT * FROM workouts WHERE id=?', [newId], function (err, rows, fields) {
 
                 if (err) {
                     next(err);
@@ -74,7 +74,7 @@ app.post('/', function (req, res, next) {
 
 app.get('/reset-table', function (req, res, next) {
     var context = {};
-    mysql.pool.query("DROP TABLE IF EXISTS workouts+", function (err) {
+    mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
         var createString = "CREATE TABLE workouts(" +
             "id INT PRIMARY KEY AUTO_INCREMENT," +
             "name VARCHAR(255) NOT NULL," +
