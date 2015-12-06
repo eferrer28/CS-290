@@ -83,7 +83,7 @@ app.get('/insert', function (req, res, next) {
         }
         context.results = "Inserted id " + result.insertId;
 
-        var = newId = result.newid;
+        var newId = result.newid;
 
         mysql.pool.query('SELECT * FROM workouts WHERE id=?', [newId], function (err, rows, fields) {
             if (err) {
