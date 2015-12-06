@@ -1,5 +1,11 @@
-document.addEventListener('DOMContentLoaded', magicHappens);
+omg();
+console.log('el o el');
+//document.addEventListener('DOMContentLoaded', magicHappens);
 
+
+function omg(){
+    console.log("for me to poop on");
+}
 
 function magicHappens(){
     console.log("don't be scared");
