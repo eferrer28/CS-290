@@ -139,7 +139,7 @@ app.post('/',function(req,res,next){
         console.log(req.body);
         console.log("1");
 		if (req.body.name && req.body.reps && req.body.weight && req.body.date && req.body.lbs){
-			pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
+			mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
 					  [req.body.name, req.body.reps, req.body.weight,
 				       req.body.date, req.body.lbs], function(err, result){
 				if(err){
@@ -148,10 +148,10 @@ app.post('/',function(req,res,next){
 				}
 				var addedId = result.insertId;
 
-				pool.query('SELECT * FROM workouts WHERE id=?', [addedId], function(err, rows, fields){
+				mysql.pool.query('SELECT * FROM workouts WHERE id=?', [addedId], function(err, rows, fields){
 					if(err){
 						next(err);
-						return;
+						return;git 
 					}
 
 					var data = rows[0];
@@ -171,7 +171,7 @@ app.post('/',function(req,res,next){
 	}
 
 	if(req.body['del']){
-		pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function(err, result){
+		mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function(err, result){
 			if(err){
 				next(err);
 				return;
