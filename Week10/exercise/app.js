@@ -9,6 +9,9 @@ var bodyParser = require('body-parser');
 
 app.use(express.static('public'));
 
+app.use(express.static(__dirname + '/View')); //store html files
+app.use(express.static(__dirname + '/Script));
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -20,7 +23,7 @@ app.set('port', 3000);
 
 app.get('/reset-table', function (req, res, next) {
     console.log("resetting shit");
-    var context = {};
+    //var context = {};
     mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
         var createString = "CREATE TABLE workouts(" +
             "id INT PRIMARY KEY AUTO_INCREMENT," +
@@ -31,8 +34,9 @@ app.get('/reset-table', function (req, res, next) {
             "lbs BOOLEAN)";
         console.log("fuck me in the ear");
         mysql.pool.query(createString, function (err) {
-            context.results = "Table reset";
-            res.render('home', context);
+           // context.results = "Table reset";
+            //res.render('home', context);
+             res.sendFile('index.html');
         })
     });
 });
