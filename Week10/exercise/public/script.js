@@ -1,5 +1,5 @@
 
-
+document.addEventListener('DOMContentloaded', addRow);
 
 /*
 function magicHappens(){
@@ -81,6 +81,10 @@ document.addEventListener('DOMContentLoaded', magicHappens);
 */
 
 function addRow(){
+    
+    document.getElementsById
+    ('exercise').addEventListener('click', function(event){
+    
 	var req = new XMLHttpRequest();
 	var workout = {};
 
@@ -95,10 +99,8 @@ function addRow(){
 		"&weight=" + workout.weight + "&date=" + workout.date + "&lbs=" + workout.lbs, true);
 	req.setRequestHeader("Content-type", "application/json");
 	req.addEventListener("load", function(){
-			console.log("Added Row");
+			console.log("SHOW ME SOMETHING");
 	});
 	req.send(null);
 })
 
- var c = document.getElementById("exercise");
-addEventListener("click", addRow());
