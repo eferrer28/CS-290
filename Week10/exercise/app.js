@@ -6,13 +6,13 @@ var handlebars = require('express-handlebars').create({
 });
 var request = require('request');
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+
 
 
 app.use(express.static(__dirname + '/public'));
-
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
