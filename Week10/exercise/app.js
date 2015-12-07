@@ -1,3 +1,4 @@
+
 var express = require('express');
 var mysql = require('./dbcon.js');
 var app = express();
@@ -9,13 +10,12 @@ var bodyParser = require('body-parser');
 
 
 
-//app.use(express.static('public'));
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
@@ -41,7 +41,7 @@ app.get('/',function(req,res,next){
 		res.render('home', context);
 	});
 });
-*/
+
 app.get('/', function (req, res, next) {
     var context = {};
     mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
@@ -56,7 +56,7 @@ app.get('/', function (req, res, next) {
             res.send(JSON.stringify(rows));
     });
 });
-
+*/
 
 /*
 app.post('/', function (req, res, next) {
@@ -189,22 +189,22 @@ app.post('/',function(req,res,next){
 	});
 */
 app.get('/insert', function (req, res, next) {
-    var context = {};
+    //var context = {};
     mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
         if (err) {
             next(err);
             return;
         }
-        context.results = "Inserted id " + result.insertId;
+       // context.results = "Inserted id " + result.insertId;
 
-        var newId = result.newid;
+       // var newId = result.newid;
 
-        mysql.pool.query('SELECT * FROM workouts WHERE id=?', [newId], function (err, rows, fields) {
+        mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
             if (err) {
                 next(err);
                 return;
             }
-            context = rows;
+            //context = rows;
             res.send(JSON.stringify(rows));
         });
 
@@ -212,9 +212,22 @@ app.get('/insert', function (req, res, next) {
     });
 });
 
+
+app.get('/createTable', function(req, res, next) {
+  // Get all rows from the table
+  pool.query('SELECT * FROM workouts', function(err, rows, fields) {
+    if (err) {
+      next(err);
+      return;
+    }
+    // Send all rows
+    res.send(JSON.stringify(rows));
+  });
+});
+
 app.get('/reset-table', function (req, res, next) {
     console.log("resetting stuff");
-    var context = {};
+    //var context = {};
     mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
         var createString = "CREATE TABLE workouts(" +
             "id INT PRIMARY KEY AUTO_INCREMENT," +
@@ -225,11 +238,13 @@ app.get('/reset-table', function (req, res, next) {
             "lbs BOOLEAN)";
         console.log("yikes");
         mysql.pool.query(createString, function (err) {
-            context.results = "Table reset";
-            res.render('home', context);
-             //res.sendFile('public/htmlform.html', {root: __dirname
-        //res.send(JSON.stringify(rows));
-        })
+         //   context.results = "Table reset";
+           // res.render('home', context);
+            //res.sendFile('public/htmlform.html', {root: __dirname
+            
+        
+        });
+        res.sendFile(__dirname +'/public/htmlform.html`);
     });
 });
 
@@ -249,3 +264,7 @@ app.use(function (err, req, res, next) {
 app.listen(app.get('port'), function () {
     console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
+
+
+
+/*
