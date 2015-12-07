@@ -160,7 +160,7 @@ app.get('/reset-table', function (req, res, next) {
                     "reps INT," +
                     "weight INT," +
                     "date DATE," +
-                    "lbs BOOLEAN)";
+                    "leferbs BOOLEAN)";
                 console.log("yikes");
                 mysql.pool.query(createString, function (err) {
                     context.results = "Table reset";
@@ -169,7 +169,8 @@ app.get('/reset-table', function (req, res, next) {
 
 
                 });
-                // res.sendFile(__dirname + '/public/htmlform.html');    });
+    // res.sendFile(__dirname + '/public/htmlform.html');    
+            });
             });
 
 
