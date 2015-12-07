@@ -103,4 +103,5 @@ function addRow(){
 	});
 	req.send(null);
 })
+};
 
