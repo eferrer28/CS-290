@@ -1,6 +1,9 @@
 
 
-
+function(){
+    
+    
+}
 
 
 function workPLZ(){
@@ -63,9 +66,11 @@ function workPLZ(){
 				newRow.children[2].textContent = response.weight;
 				newRow.children[3].textContent = response.date;
 				newRow.children[4].textContent = response.lbs;
+                */
             }
         });
         });
-};
-*/
+};  
+
+document.addEventListener('DOMContentloaded', editstuff);
 document.addEventListener('DOMContentloaded', workPLZ);
