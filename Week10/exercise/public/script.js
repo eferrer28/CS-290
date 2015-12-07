@@ -1,11 +1,9 @@
-function poop(){
-    console.log("53");
-}
 
 
 
+/*
 function magicHappens(){
-    console.log("don't be scared");
+    
     document.getElementsByName
     ('Exercise').addEventListener('click', function(event){
 		var req = new XMLHttpRequest();
@@ -64,7 +62,7 @@ function magicHappens(){
                      document.getElementById("theone").innerHTML += "<tr id='row"+response[i].id+"'><td>"+response[i].name+"</td><td>"+response[i].reps+"</td><td>"+response[i].weight+"</td><td>"+response[i].date+"</td><td>"+isTrue(response[i].lbs)+"</td><td><form action='/update' method='get'><input type='hidden' name= 'id' value='"+response[i].id+"'><input type='submit' name='update' value='Edit'></form></td><td><form action='/delete' onsubmit='deleteRow("+response[i].id+")' method='get'><input type='hidden' name='id' value='"+response[i].id+"'><input type='submit' name='delete' value='Delete'></form></td></tr>";     
                 };
                    
- */               
+              
         
     }else{
         console.log("ERROR IN NETWORK REQUEST " + req.statusText);
@@ -80,4 +78,27 @@ function magicHappens(){
 //windows.addEventListener('load', function()){
                          
 document.addEventListener('DOMContentLoaded', magicHappens);
-poop();
+*/
+
+function addRow(){
+	var req = new XMLHttpRequest();
+	var workout = {};
+
+	workout.name = document.getElementById("name").value;
+	workout.reps = document.getElementById("reps").value;
+	workout.weight = document.getElementById("weight").value;
+	workout.date = document.getElementById("date").value;
+	workout.lbs = document.getElementById("lbs").value;
+
+	req.open("GET", "http://http://52.89.169.73:3000:3000/insert?"+
+		"name=" + workout.name + "&reps=" + workout.reps + 
+		"&weight=" + workout.weight + "&date=" + workout.date + "&lbs=" + workout.lbs, true);
+	req.setRequestHeader("Content-type", "application/json");
+	req.addEventListener("load", function(){
+			console.log("Added Row");
+	});
+	req.send(null);
+})
+
+ var c = document.getElementById("exercise");
+addEventListener("click", addRow());
