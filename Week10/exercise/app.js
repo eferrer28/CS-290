@@ -155,7 +155,7 @@ app.post('/insert',function(req,res,next){
 				mysql.pool.query('SELECT * FROM workouts WHERE id=?', [addedId], function(err, rows, fields){
 					if(err){
 						next(err);
-						return;git 
+						return;
 					}
 
 					var data = rows[0];
