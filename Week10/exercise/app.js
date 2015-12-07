@@ -213,7 +213,7 @@ app.get('/insert', function (req, res, next) {
 });
 
 app.get('/reset-table', function (req, res, next) {
-    console.log("resetting shit");
+    console.log("resetting stuff");
     var context = {};
     mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
         var createString = "CREATE TABLE workouts(" +
@@ -223,12 +223,12 @@ app.get('/reset-table', function (req, res, next) {
             "weight INT," +
             "date DATE," +
             "lbs BOOLEAN)";
-        console.log("fuck me in the ear");
+        console.log("yikes");
         mysql.pool.query(createString, function (err) {
             context.results = "Table reset";
-            //res.render('home', context);
+            res.render('home', context);
              //res.sendFile('public/htmlform.html', {root: __dirname
-        res.send(JSON.stringify(rows));
+        //res.send(JSON.stringify(rows));
         })
     });
 });
