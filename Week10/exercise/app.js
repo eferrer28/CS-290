@@ -1,4 +1,3 @@
-
 var express = require('express');
 var mysql = require('./dbcon.js');
 var app = express();
@@ -21,7 +20,7 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
-/*
+
 app.get('/',function(req,res,next){
 	var context = {};
 	mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
@@ -45,70 +44,6 @@ app.get('/',function(req,res,next){
 
 
 /*
-app.post('/', function (req, res, next) {
-    var context = {};
-    //if (req.body['Exercise']) {
-        console.log("HOO");
-        console.log(req.body);
-        mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.body.name, req.body.reps, req.body.weight, req.body.date, req.body.lbs], function (err, result) {
-            if (err) {
-                next(err);
-                return;
-            }
-            var newId = result.insertid;
-
-            mysql.pool.query('SELECT * FROM workouts WHERE id=?', [newId], function (err, rows, fields) {
-
-                if (err) {
-                    next(err);
-                    return;
-                }
-                
-               //context.results = "Inserted id " + result.insertId;
-                context.results = JSON.stringify(rows);
-                //res.type('json');
-                res.send(context);
-               // var data = rows;
-                //data = JSON.stringify(data);
-                //res.send(data);
-            });
-        });
-   // }
-});
-
-
-
-app.get('/', function (req, res, next) {
-    var context = {};
-    mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
-        if (err) {
-            next(err);
-            return;
-        }
-        context.results = "Inserted id " + result.insertId;
-
-        var newId = result.newid;
-
-        mysql.pool.query('SELECT * FROM workouts WHERE id=?', [newId], function (err, rows, fields) {
-            if (err) {
-                next(err);
-                return;
-            }
-            context = rows;
-            res.send(JSON.stringify(rows));
-        });
-
-
-    });
-});
-
-
-
-
-
-
-
-
 
 app.get('/delete',function(req,res,next){
   var context = {};
@@ -122,70 +57,69 @@ app.get('/delete',function(req,res,next){
   });
 });
 
-*/
 
-app.get('/', function(req, res, next) {
-  // Get all rows from the table
-  mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields) {
-    if (err) {
-      next(err);
-      return;
-    }
-    // Send all rows
-    res.send(JSON.stringify(rows));
-  });
+
+app.get('/', function (req, res, next) {
+    // Get all rows from the table
+    mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
+        if (err) {
+            next(err);
+            return;
+        }
+        // Send all rows
+        res.send(JSON.stringify(rows));
+    });
 });
+*/
+app.post('/', function (req, res, next) {
+    var context = {};
 
-app.post('/insert',function(req,res,next){
-	var context = {};
+    //if(req.body['Exercise']){
+    console.log(req.body);
+    console.log("1");
+    if (req.body.name && req.body.reps && req.body.weight && req.body.date && req.body.lbs) {
+        mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)", [req.body.name, req.body.reps, req.body.weight,
+				       req.body.date, req.body.lbs], function (err, result) {
+            if (err) {
+                next(err);
+                return;
+            }
+            var addedId = result.insertId;
 
-	//if(req.body['Exercise']){
-        console.log(req.body);
-        console.log("1");
-		if (req.body.name && req.body.reps && req.body.weight && req.body.date && req.body.lbs){
-			mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES (?, ?, ?, ?, ?)",
-					  [req.body.name, req.body.reps, req.body.weight,
-				       req.body.date, req.body.lbs], function(err, result){
-				if(err){
-					next(err);
-					return;
-				}
-				var addedId = result.insertId;
+            mysql.pool.query('SELECT * FROM workouts WHERE id=?', [addedId], function (err, rows, fields) {
+                if (err) {
+                    next(err);
+                    return;
+                }
 
-				mysql.pool.query('SELECT * FROM workouts WHERE id=?', [addedId], function(err, rows, fields){
-					if(err){
-						next(err);
-						return;
-					}
+                var data = rows[0];
 
-					var data = rows[0];
-                    
-					if (data.lbs === 0){
-						data.lbs = "kgs";
-					} else {
-						data.lbs = "lbs";
-					}
-                    
-					res.type('text/plain');
-					data = JSON.stringify(data);
-					res.send(data);
-				});
-			});
-		}
-//	}
+                if (data.lbs === 0) {
+                    data.lbs = "kgs";
+                } else {
+                    data.lbs = "lbs";
+                }
 
-	if(req.body['del'])mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function(err, result){
-			if(err){
-				next(err);
-				return;
-			}
-			var data = {};
-			data.id = req.body.id;
-			data = JSON.stringify(data);
-			res.type('text/plain');
-			res.send(data);
-		});
-	});
+                res.type('text/plain');
+                data = JSON.stringify(data);
+                res.send(data);
+            });
+        });
+    }
+    //	}
+
+    if (req.body['del']) mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function (err, result) {
+        if (err) {
+            next(err);
+            return;
+        }
+        var data = {};
+        data.id = req.body.id;
+        data = JSON.stringify(data);
+        res.type('text/plain');
+        res.send(data);
+    });
+});
 
 
 /*
@@ -217,41 +151,40 @@ app.get('/insert', function (req, res, next) {
 
 
 app.get('/reset-table', function (req, res, next) {
-    console.log("resetting stuff");
-    //var context = {};
-    mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
-        var createString = "CREATE TABLE workouts(" +
-            "id INT PRIMARY KEY AUTO_INCREMENT," +
-            "name VARCHAR(255) NOT NULL," +
-            "reps INT," +
-            "weight INT," +
-            "date DATE," +
-            "lbs BOOLEAN)";
-        console.log("yikes");
-        mysql.pool.query(createString, function (err) {
-         //   context.results = "Table reset";
-           // res.render('home', context);
-            //res.sendFile('public/htmlform.html', {root: __dirname
-            
-        
-        });
- res.sendFile(__dirname + '/public/htmlform.html');    });
-});
+            console.log("resetting stuff");
+            var context = {};
+            mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
+                var createString = "CREATE TABLE workouts(" +
+                    "id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "name VARCHAR(255) NOT NULL," +
+                    "reps INT," +
+                    "weight INT," +
+                    "date DATE," +
+                    "lbs BOOLEAN)";
+                console.log("yikes");
+                mysql.pool.query(createString, function (err) {
+                    context.results = "Table reset";
+                    res.render('home', context);
+                    //res.sendFile('public/htmlform.html', {root: __dirname
+
+
+                });
+                // res.sendFile(__dirname + '/public/htmlform.html');    });
+            });
 
 
 
-app.use(function (req, res) {
-    res.status(404);
-    res.render('404');
-});
+            app.use(function (req, res) {
+                res.status(404);
+                res.render('404');
+            });
 
-app.use(function (err, req, res, next) {
-    console.error(err.stack);
-    res.status(500);
-    res.render('500');
-});
+            app.use(function (err, req, res, next) {
+                console.error(err.stack);
+                res.status(500);
+                res.render('500');
+            });
 
-app.listen(app.get('port'), function () {
-    console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
-});
-
+            app.listen(app.get('port'), function () {
+                console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+            });
