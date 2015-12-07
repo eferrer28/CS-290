@@ -27,7 +27,8 @@
 })
 };
 */
-        document.getElementsById('exercise').addEventListener('click', function(event){
+        document.getElementById
+    ('exercise').addEventListener('click', function(event){
 		var req = new XMLHttpRequest();
 		var payload = {};
         console.log("4");
@@ -66,7 +67,6 @@
                 console.log("error");
             }
         });
-            	event.preventDefault();
-
+            
         });
 
