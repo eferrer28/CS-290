@@ -244,8 +244,7 @@ app.get('/reset-table', function (req, res, next) {
             
         
         });
-        res.sendFile(__dirname +'/public/htmlform.html`);
-    });
+ res.sendFile(__dirname + '/public/htmlform.html');    });
 });
 
 
