@@ -127,7 +127,7 @@ app.post('/', function (req, res, next) {
                                 res.send(JSON.stringify(rows));
                                 });
                         });
-};
+}
 
 
                     app.use(function (req, res) {
@@ -143,4 +143,4 @@ app.post('/', function (req, res, next) {
 
                     app.listen(app.get('port'), function () {
                         console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
-                    })
+                    });
