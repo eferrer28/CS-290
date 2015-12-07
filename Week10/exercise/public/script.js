@@ -1,5 +1,5 @@
 
-document.addEventListener('DOMContentloaded', addRow);
+
 
 /*
 function magicHappens(){
@@ -80,7 +80,7 @@ function magicHappens(){
 document.addEventListener('DOMContentLoaded', magicHappens);
 */
 
-function addRow(){
+function workPLZ(){
     /*
     document.getElementsById
     ('exercise').addEventListener('click', function(event){
@@ -123,7 +123,7 @@ function addRow(){
 		req.addEventListener('load',function(){
 			if(req.status >= 200 && req.status < 400){
 				var response = JSON.parse(req.responseText);
-
+                console.log("word");
 				var mainTable = document.getElementById('tbody');
 				var newRow = document.createElement('tr');
 				newRow.setAttribute('id', 'row' + response.id);
@@ -143,3 +143,6 @@ function addRow(){
         });
         });
 };
+
+
+document.addEventListener('DOMContentloaded', workPLZ);
