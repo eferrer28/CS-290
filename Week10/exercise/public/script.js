@@ -27,10 +27,11 @@
 
 
                 
-                req.(send.JSON.stringify(payload));
             }else{
                 console.log("error");
             }
+             req.send.JSON.stringify(payload));
+
         });
             
         });
