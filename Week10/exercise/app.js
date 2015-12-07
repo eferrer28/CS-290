@@ -127,33 +127,7 @@ app.post('/', function (req, res, next) {
                                 res.send(JSON.stringify(rows));
                                 });
                         });
-
-
-                    /*
-                    app.get('/insert', function (req, res, next) {
-                        //var context = {};
-                        mysql.pool.query("INSERT eferINTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
-                            if (err) {
-                                next(err);
-                                return;
-                            }
-                           // context.results = "Inserted id " + result.insertId;
-
-                           // var newId = result.newid;
-
-                            mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
-                                if (err) {
-                                    next(err);
-                                    return;
-                                }
-                                //context = rows;
-                                res.send(JSON.stringify(rows));
-                            });
-
-
-                        });
-                    });
-                    */
+};
 
 
                     app.use(function (req, res) {
