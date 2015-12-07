@@ -9,15 +9,19 @@ var bodyParser = require('body-parser');
 
 
 
-app.use(express.static(__dirname + '/public'));
+//app.use(express.static('public'));
+//app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+app.use(express.static('public'));
+
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
-
+/*
 app.get('/',function(req,res,next){
 	var context = {};
 	mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
@@ -37,7 +41,7 @@ app.get('/',function(req,res,next){
 		res.render('home', context);
 	});
 });
-/*
+*/
 app.get('/', function (req, res, next) {
     var context = {};
     mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
@@ -47,12 +51,12 @@ app.get('/', function (req, res, next) {
         }
         context.results = JSON.stringify(rows);
         console.log("fuck me in the ear again");
-        res.render('home', context);
+        res.send(results);
     });
 });
 
 
-
+/*
 app.post('/', function (req, res, next) {
     var context = {};
     //if (req.body['Exercise']) {
@@ -182,7 +186,7 @@ app.post('/',function(req,res,next){
 		});
 	});
 */
-app.get('/', function (req, res, next) {
+app.get('/insert', function (req, res, next) {
     var context = {};
     mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
         if (err) {
@@ -221,7 +225,8 @@ app.get('/reset-table', function (req, res, next) {
         mysql.pool.query(createString, function (err) {
             context.results = "Table reset";
             //res.render('home', context);
-             res.sendFile('public/htmlform.html', {root: __dirname });
+             //res.sendFile('public/htmlform.html', {root: __dirname
+        res.send(JSON.stringify(results));
         })
     });
 });
