@@ -67,34 +67,6 @@ app.get('/',function(req,res,next){
 
 
 
-/*
-
-app.get('/delete',function(req,res,next){
-  var context = {};
-  mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.query.id], function(err, result){
-    if(err){
-      next(err);
-      return;
-    }
-    context.results = "Deleted " + result.changedRows + " rows.";
-    res.render('home',context);
-  });
-});
-
-
-
-app.get('/', function (req, res, next) {
-    // Get all rows from the table
-    mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
-        if (err) {
-            next(err);
-            return;
-        }
-        // Send all rows
-        res.send(JSON.stringify(rows));
-    });
-});
-*/
 app.post('/', function (req, res, next) {
     var context = {};
 
@@ -131,7 +103,7 @@ app.post('/', function (req, res, next) {
     }
     //	}
 
-    if (req.body['del']) mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function (err, result) {
+    if (req.body['deleted']) mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function (err, result) {
         if (err) {
             next(err);
             return;

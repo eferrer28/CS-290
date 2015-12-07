@@ -1,60 +1,7 @@
 
 
 
-/*
-function magicHappens(){
-    
-    document.getElementsByName
-    ('Exercise').addEventListener('click', function(event){
-		var req = new XMLHttpRequest();
-		var payload = {};
 
-		payload.name = document.getElementById('name').value;
-		payload.reps = document.getElementById('reps').value;
-		payload.weight = document.getElementById('weight').value;
-		payload.date = document.getElementById('date').value;
-		payload.units = document.getElementById('lbs').value;
-		payload.workout = true;
-
-		req.open('POST', '/', true);
-		req.setRequestHeader('Content-Type', 'application/json');
-		req.addEventListener('load',function(){
-			if(req.status >= 200 && req.status < 400){
-				var response = JSON.parse(req.responseText);
-
-				var mainTable = document.getElementById('tbody');
-				var newRow = document.createElement('tr');
-				newRow.setAttribute('id', 'row' + response.id);
-				mainTable.appendChild(newRow);
-
-				for (var i = 0; i < 6; i++){
-					var newCell = document.createElement('td');
-					newRow.appendChild(newCell);
-				}
-
-				newRow.children[0].textContent = response.name;
-				newRow.children[1].textContent = response.reps;
-				newRow.children[2].textContent = response.weight;
-				newRow.children[3].textContent = response.date;
-				newRow.children[4].textContent = response.lbs;
-    
-              
-        
-    }else{
-        console.log("ERROR IN NETWORK REQUEST " + req.statusText);
-    }
-        });
-        //req.send(null); for get requets
-        req.send(JSON.stringify(payload));
-        event.preventDefault();
-    
-    });
-}
-
-//windows.addEventListener('load', function()){
-                         
-document.addEventListener('DOMContentLoaded', magicHappens);
-*/
 
 function workPLZ(){
     /*
@@ -100,11 +47,12 @@ function workPLZ(){
 			if(req.status >= 200 && req.status < 400){
 				var response = JSON.parse(req.responseText);
                 console.log("word");
+                /*
 				var mainTable = document.getElementById('tbody');
 				var newRow = document.createElement('tr');
 				newRow.setAttribute('id', 'row' + response.id);
 				mainTable.appendChild(newRow);
-
+                
 				for (var i = 0; i < 6; i++){
 					var newCell = document.createElement('td');
 					newRow.appendChild(newCell);
@@ -119,6 +67,5 @@ function workPLZ(){
         });
         });
 };
-
-
+*/
 document.addEventListener('DOMContentloaded', workPLZ);

@@ -28,7 +28,7 @@
 
         </trow>
     </thead>
-    <tbody id="tbody">
+    <tbody id="data">
         {{#if results}} {{#each results}}
         <tr id="row{{this.id}}">
             <td>{{this.name}}</td>
@@ -39,8 +39,8 @@
             <td>
                 <form method="post">
                     <input type="hidden" name="id" value="{{this.id}}">
-                    <input type="submit" name="edit" value="Edit">
-                    <input class="deleteWorkout" type="submit" name="delete" value="Delete">
+                    <input type="submit" name="edit" value="edit">
+                    <input  type="submit" name="deleted" value="delete">
                 </form>
             </td>
         </tr>
