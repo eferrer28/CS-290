@@ -42,21 +42,7 @@ app.get('/',function(req,res,next){
 	});
 });
 
-app.get('/', function (req, res, next) {
-    var context = {};
-    mysql.pool.query('SELECT * FROM workouts', function (err, rows, fields) {
-        if (err) {
-            next(err);
-            return;
-        }
-       // context.results = JSON.stringify(rows);
-        console.log("fuck me in the ear again");
-       // res.send(results);
-                    context = rows;
-            res.send(JSON.stringify(rows));
-    });
-});
-*/
+
 
 /*
 app.post('/', function (req, res, next) {
@@ -188,6 +174,18 @@ app.post('/',function(req,res,next){
 		});
 	});
 */
+app.get('/', function(req, res, next) {
+  // Get all rows from the table
+  mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields) {
+    if (err) {
+      next(err);
+      return;
+    }
+    // Send all rows
+    res.send(JSON.stringify(rows));
+  });
+});
+
 app.get('/insert', function (req, res, next) {
     //var context = {};
     mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
@@ -213,17 +211,7 @@ app.get('/insert', function (req, res, next) {
 });
 
 
-app.get('/createTable', function(req, res, next) {
-  // Get all rows from the table
-  pool.query('SELECT * FROM workouts', function(err, rows, fields) {
-    if (err) {
-      next(err);
-      return;
-    }
-    // Send all rows
-    res.send(JSON.stringify(rows));
-  });
-});
+
 
 app.get('/reset-table', function (req, res, next) {
     console.log("resetting stuff");
