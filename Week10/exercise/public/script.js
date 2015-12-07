@@ -94,7 +94,7 @@ function addRow(){
 	workout.date = document.getElementById("date").value;
 	workout.lbs = document.getElementById("lbs").value;
 
-	req.open("GET", "http://http://52.89.169.73:3000:3000/insert?"+
+	req.open("GET", "http://http://52.89.169.73:3000/insert?"+
 		"name=" + workout.name + "&reps=" + workout.reps + 
 		"&weight=" + workout.weight + "&date=" + workout.date + "&lbs=" + workout.lbs, true);
 	req.setRequestHeader("Content-type", "application/json");
