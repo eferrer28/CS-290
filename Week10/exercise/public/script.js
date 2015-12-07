@@ -46,9 +46,9 @@
 			if(req.status >= 200 && req.status < 400){
 				var response = JSON.parse(req.responseText);
                 console.log("word");
-                /*
-				var mainTable = document.getElementById('tbody');
-				var newRow = document.createElement('tr');
+                
+				var ntable = document.getElementById('data');
+				var nrow = document.createElement('tr');
 				newRow.setAttribute('id', 'row' + response.id);
 				mainTable.appendChild(newRow);
                 
@@ -57,12 +57,13 @@
 					newRow.appendChild(newCell);
 				}
 
-				newRow.children[0].textContent = response.name;
-				newRow.children[1].textContent = response.reps;
-				newRow.children[2].textContent = response.weight;
-				newRow.children[3].textContent = response.date;
-				newRow.children[4].textContent = response.lbs;
-                */
+				nrow.children[0].textContent = response.name;
+				nrow.children[1].textContent = response.reps;
+				nrow.children[2].textContent = response.weight;
+				nrow.children[3].textContent = response.date;
+				nrow.children[4].textContent = response.lbs;
+                
+                req.(sendJSON.payload);
             }else{
                 console.log("error");
             }
