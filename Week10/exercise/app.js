@@ -101,46 +101,46 @@ app.post('/', function (req, res, next) {
                 });
             }
             //	}
-    
-     if (req.body['edit']){
-        context = {}
-        mysql.pool.query("SELECT * FROM workouts WHERE id = ?", [req.body.id], function(err, rows, fields){
-            if(err){
-                next(err);
-                return;
+
+            if (req.body['edit']) {
+                context = {}
+                mysql.pool.query("SELECT * FROM workouts WHERE id = ?", [req.body.id], function (err, rows, fields) {
+                    if (err) {
+                        next(err);
+                        return;
+                    }
+                    context.edit = rows;
+                    res.render('changes', context);
+                });
             }
-            context.edit = rows;
-            res.render('changes', context);
-        });
-    }
 
             if (req.body['deleted']) mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function (err, result) {
-                        if (err) {
-                            next(err);
-                            return;
-                        }
-                        mysql.pool.query("SELECT * FROM workouts", function (err, rows, fields) {
-                                if (err) {
-                                    next(err);
-                                    return;
-                                }
-                                res.send(JSON.stringify(rows));
-                                });
-                        });
-}
+                if (err) {
+                    next(err);
+                    return;
+                }
+                mysql.pool.query("SELECT * FROM workouts", function (err, rows, fields) {
+                    if (err) {
+                        next(err);
+                        return;
+                    }
+                    res.send(JSON.stringify(rows));
+                });
+            });
+        };
 
 
-                    app.use(function (req, res) {
-                        res.status(404);
-                        res.render('404');
-                    });
+        app.use(function (req, res) {
+            res.status(404);
+            res.render('404');
+        });
 
-                    app.use(function (err, req, res, next) {
-                        console.error(err.stack);
-                        res.status(500);
-                        res.render('500');
-                    });
+        app.use(function (err, req, res, next) {
+            console.error(err.stack);
+            res.status(500);
+            res.render('500');
+        });
 
-                    app.listen(app.get('port'), function () {
-                        console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
-                    });
+        app.listen(app.get('port'), function () {
+            console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
+        });

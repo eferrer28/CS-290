@@ -1,12 +1,8 @@
 
 
-function(){
-    
-    
-}
 
 
-function workPLZ(){
+
     /*
     document.getElementsById
     ('exercise').addEventListener('click', function(event){
@@ -67,10 +63,11 @@ function workPLZ(){
 				newRow.children[3].textContent = response.date;
 				newRow.children[4].textContent = response.lbs;
                 */
+            }else{
+                console.log("error");
             }
         });
-        });
-};  
+            	event.preventDefault();
 
-document.addEventListener('DOMContentloaded', editstuff);
-document.addEventListener('DOMContentloaded', workPLZ);
+        });
+
