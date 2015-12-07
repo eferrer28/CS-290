@@ -31,7 +31,7 @@ app.get('/reset-table', function (req, res, next) {
                     "reps INT," +
                     "weight INT," +
                     "date DATE," +
-                    "leferbs BOOLEAN)";
+                    "lbs BOOLEAN)";
                 console.log("yikes");
                 mysql.pool.query(createString, function (err) {
                     context.results = "Table reset";
@@ -149,7 +149,7 @@ app.post('/', function (req, res, next) {
 /*
 app.get('/insert', function (req, res, next) {
     //var context = {};
-    mysql.pool.query("INSERT INTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
+    mysql.pool.query("INSERT eferINTO workouts (`name`, `reps`, `weight`, `date`, `lbs`) VALUES (?, ?, ?, ?, ?)", [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.lbs], function (err, result) {
         if (err) {
             next(err);
             return;
@@ -171,11 +171,6 @@ app.get('/insert', function (req, res, next) {
     });
 });
 */
-
-
-
-
-
 
 
             app.use(function (req, res) {
