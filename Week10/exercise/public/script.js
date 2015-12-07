@@ -145,4 +145,4 @@ function workPLZ(){
 };
 
 
-document.addEventListener('DOMContentloaded', workPLZ);
+//document.addEventListener('DOMContentloaded', workPLZ);
