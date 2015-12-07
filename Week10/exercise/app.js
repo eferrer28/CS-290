@@ -114,7 +114,8 @@ app.post('/', function (req, res, next) {
                 });
             }
 
-            if (req.body['deleted']) mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function (err, result) {
+            if (req.body['deleted']){
+                mysql.pool.query("DELETE FROM workouts WHERE id=?", [req.body.id], function (err, result) {
                 if (err) {
                     next(err);
                     return;
@@ -127,7 +128,8 @@ app.post('/', function (req, res, next) {
                     res.send(JSON.stringify(rows));
                 });
             });
-        };
+        }
+});
 
 
         app.use(function (req, res) {
