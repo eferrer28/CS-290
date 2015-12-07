@@ -54,7 +54,7 @@ app.get('/',function(req,res,next){
 		}
 		context.results = rows;
 		context.results.forEach(function(current,index,array){
-			if (current.lbs === 0){
+			if (current.lbs == 0){
 				current.lbs = "kgs";
 			}
 			else{
@@ -116,8 +116,7 @@ app.post('/', function (req, res, next) {
                     return;
                 }
 
-                var data = rows[0];
-
+                var data = rows;
                 if (data.lbs === 0) {
                     data.lbs = "kgs";
                 } else {
