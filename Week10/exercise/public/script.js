@@ -63,11 +63,55 @@
 				nrow.children[3].textContent = response.date;
 				nrow.children[4].textContent = response.lbs;
                 
-                req.(sendJSON.payload);
+                var modEx = document.createElement('form');
+				newRow.children[5].appendChild(modEx);
+				modEx.setAttribute('method', 'post');
+
+				for (var i = 0; i < 3; i++){
+					var newInput = document.createElement('input');
+					modEx.appendChild(newInput);
+				}
+
+				modEx.children[0].setAttribute('type', 'hidden');
+				modEx.children[0].setAttribute('name', 'id');
+				modEx.children[0].setAttribute('value', response.id);
+
+				modEx.children[1].setAttribute('type', 'submit');
+				modEx.children[1].setAttribute('name', 'edit');
+				modEx.children[1].setAttribute('value', 'edit');
+
+				modEx.children[2].setAttribute('type', 'submit');
+				modEx.children[2].setAttribute('name', 'deleted');
+				modEx.children[2].setAttribute('value', 'delete');
+				modEx.children[2].addEventListener('click', delFunction, true);
+                
+                req.(send.JSON.stringify(payload));
             }else{
                 console.log("error");
             }
         });
             
         });
+
+    	var deleteEx = document.getElementsByClassName('deleteWorkout');
+
+	var delFunction = function(event){
+		var req = new XMLHttpRequest();
+
+		var payload = {};
+		payload.id = this.parentNode.firstElementChild.value;
+		payload.del = true;
+
+		req.open('POST', '/', false);
+		req.setRequestHeader('Content-Type', 'application/json');
+		req.send(JSON.stringify(payload));
+		event.preventDefault;
+		var response = JSON.parse(req.responseText);
+		var delParent = document.getElementById('row' + response.id).parentNode;
+		delParent.removeChild(document.getElementById('row' + response.id));
+	};
+
+	for(var i = 0; i < deleteEx.length; i++){
+		deleteEx[i].addEventListener('click', delFunction);
+	}
 
