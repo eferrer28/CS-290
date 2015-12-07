@@ -21,6 +21,30 @@ app.set('view engine', 'handlebars');
 app.set('port', 3000);
 
 
+app.get('/reset-table', function (req, res, next) {
+            console.log("resetting stuff");
+            var context = {};
+            mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
+                var createString = "CREATE TABLE workouts(" +
+                    "id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "name VARCHAR(255) NOT NULL," +
+                    "reps INT," +
+                    "weight INT," +
+                    "date DATE," +
+                    "leferbs BOOLEAN)";
+                console.log("yikes");
+                mysql.pool.query(createString, function (err) {
+                    context.results = "Table reset";
+                    res.render('home', context);
+                    //res.sendFile('public/htmlform.html', {root: __dirname
+
+
+                });
+    // res.sendFile(__dirname + '/public/htmlform.html');    
+            });
+            });
+
+
 app.get('/',function(req,res,next){
 	var context = {};
 	mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
@@ -150,28 +174,7 @@ app.get('/insert', function (req, res, next) {
 
 
 
-app.get('/reset-table', function (req, res, next) {
-            console.log("resetting stuff");
-            var context = {};
-            mysql.pool.query("DROP TABLE IF EXISTS workouts", function (err) {
-                var createString = "CREATE TABLE workouts(" +
-                    "id INT PRIMARY KEY AUTO_INCREMENT," +
-                    "name VARCHAR(255) NOT NULL," +
-                    "reps INT," +
-                    "weight INT," +
-                    "date DATE," +
-                    "leferbs BOOLEAN)";
-                console.log("yikes");
-                mysql.pool.query(createString, function (err) {
-                    context.results = "Table reset";
-                    res.render('home', context);
-                    //res.sendFile('public/htmlform.html', {root: __dirname
 
-
-                });
-    // res.sendFile(__dirname + '/public/htmlform.html');    
-            });
-            });
 
 
 
