@@ -27,8 +27,7 @@
 })
 };
 */
-        document.getElementsById
-    ('exercise').addEventListener('click', function(event){
+        document.getElementsById('exercise').addEventListener('click', function(event){
 		var req = new XMLHttpRequest();
 		var payload = {};
         console.log("4");
