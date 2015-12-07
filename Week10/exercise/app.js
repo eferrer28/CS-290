@@ -123,7 +123,20 @@ app.get('/delete',function(req,res,next){
 });
 
 */
-app.post('/',function(req,res,next){
+
+app.get('/', function(req, res, next) {
+  // Get all rows from the table
+  mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields) {
+    if (err) {
+      next(err);
+      return;
+    }
+    // Send all rows
+    res.send(JSON.stringify(rows));
+  });
+});
+
+app.post('/insert',function(req,res,next){
 	var context = {};
 
 	//if(req.body['Exercise']){
@@ -174,17 +187,7 @@ app.post('/',function(req,res,next){
 		});
 	});
 
-app.get('/', function(req, res, next) {
-  // Get all rows from the table
-  mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields) {
-    if (err) {
-      next(err);
-      return;
-    }
-    // Send all rows
-    res.send(JSON.stringify(rows));
-  });
-});
+
 /*
 app.get('/insert', function (req, res, next) {
     //var context = {};

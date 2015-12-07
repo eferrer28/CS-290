@@ -117,7 +117,7 @@ function addRow(){
 		payload.units = document.getElementById('lbs').value;
 		payload.workout = true;
 
-		req.open('POST', '/', true);
+		req.open('POST', '/insert', true);
 		req.setRequestHeader('Content-Type', 'application/json');
 		req.addEventListener('load',function(){
 			if(req.status >= 200 && req.status < 400){
