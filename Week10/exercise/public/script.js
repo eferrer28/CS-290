@@ -30,11 +30,14 @@ function magicHappens() {
 
                     } else {
                         console.log("error" + req.statusText);
+                        
                     }
                 });
                 req.send(JSON.stringify(payload)); event.preventDefault();
+            console.log("fooook");
 
         });
+    console.log("fin");
          }
 
 document.addEventListener("DOMContentLoaded", magicHappens);
