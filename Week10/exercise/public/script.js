@@ -20,10 +20,10 @@ function magicHappens() {
                         var response = JSON.parse(req.responseText);
                         console.log("word");
 
-                        //var ntable = document.getElementById('data');
-                        //var nrow = document.createElement('tr');
-                        //ntable.setAttribute('id', 'row' + response.id);
-                        //nrow.appendChild(newRow);
+                        var ntable = document.getElementById('data');
+                        var nrow = document.createElement('tr');
+                        ntable.setAttribute('id', 'row' + response.id);
+                        nrow.appendChild(newRow);
 
 
 
