@@ -4,7 +4,7 @@ function magicHappens() {
                 var req = new XMLHttpRequest();
                 var payload = {};
                 console.log("4");
-        };
+        
                 payload.name = document.getElementById('name').value;
                 payload.reps = document.getElementById('reps').value;
                 payload.weight = document.getElementById('weight').value;
@@ -32,8 +32,9 @@ function magicHappens() {
                         console.log("error" + req.statusText);
                     }
                 });
-                req.send.JSON.stringify(payload)); event.preventDefault();
+                req.send(JSON.stringify(payload)); event.preventDefault();
 
-        };
+        });
+         }
 
 document.addEventListener("DOMContentLoaded", magicHappens);
