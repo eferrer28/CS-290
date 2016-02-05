@@ -81,3 +81,17 @@ html {
     
 }
 
+}
+p, ol, ul, blockquote, pre, code, .highlight, table {
+    line-height: 1.5em;
+    margin-bottom: 1.5em;
+}
+.highlight, pre code {
+    display: block;
+    min-width: 460px;
+    max-width: 860px;
+    margin: 0px auto;
+    background: #0F161E none repeat scroll 0% 0%;
+    border-radius: 6px;
+    padding: 20px;
+}
