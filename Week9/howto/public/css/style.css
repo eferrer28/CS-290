@@ -13,6 +13,7 @@ html {
   margin: 0 auto;
   padding-left: 250px;
   transition: all 0.4s ease 0s;
+    
 }
 
 #sidebar-wrapper {
@@ -31,12 +32,12 @@ html {
   
   margin: 0;
   float: left;
-    
+
     
 }
 
 .sidebar-nav {
-  
+  position: absolute;
   top: 0;
   width: 250px;
   list-style: none;
