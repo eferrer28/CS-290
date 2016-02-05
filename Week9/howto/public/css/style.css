@@ -3,6 +3,13 @@ body {
     padding-top: 65px; 
 }
 */
+html {
+    height: 102%;
+}
+
+html {
+    overflow: scroll;
+} 
 
 #wrapper {
   padding-left: 250px;
