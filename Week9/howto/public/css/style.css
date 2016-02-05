@@ -12,6 +12,7 @@ html {
 } 
 
 #wrapper {
+  margin: 0 auto;
   padding-left: 250px;
   transition: all 0.4s ease 0s;
 }
