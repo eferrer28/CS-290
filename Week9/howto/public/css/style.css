@@ -3,7 +3,17 @@ body {
     padding-top: 65px; 
 }
 */
+html {
+    height: 102%;
+}
 
+
+
+#wrapper {
+  margin: 0 auto;
+  padding-left: 250px;
+  transition: all 0.4s ease 0s;
+}
 
 #sidebar-wrapper {
   margin-left: -250px;
