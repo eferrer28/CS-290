@@ -32,10 +32,11 @@ html {
   margin: 0;
   float: left;
     
+    
 }
 
 .sidebar-nav {
-  position: absolute;
+  
   top: 0;
   width: 250px;
   list-style: none;
