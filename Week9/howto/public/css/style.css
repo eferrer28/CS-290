@@ -3,17 +3,11 @@ body {
     padding-top: 65px; 
 }
 */
-html {
-    height: 102%;
-}
-
-
 
 #wrapper {
-  margin: 0 auto;
   padding-left: 250px;
-  transition: all 0.4s ease 0s;
-    
+  
+   
 }
 
 #sidebar-wrapper {
@@ -25,14 +19,13 @@ html {
   height: 100%;
   overflow-y: auto;
   z-index: 1000;
-  transition: all 0.4s ease 0s;
+  
 }
 
 #page-content-wrapper {
   
   margin: 0;
   float: left;
-
     
 }
 
@@ -43,6 +36,7 @@ html {
   list-style: none;
   margin: 0;
   padding: 0;
+    
 }
 
 .intro, .unirest, .data, .example{
@@ -79,8 +73,6 @@ html {
 .highlight {
     color: #FFF;
     
-}
-
 }
 p, ol, ul, blockquote, pre, code, .highlight, table {
     line-height: 1.5em;
